@@ -2,41 +2,29 @@
 
 class File
 {
-    public $filename;
-    public $somecontent;
+    public $file;
     private $fp;
 
-    public function __construct($filename, $somecontent, $fp)
+    public function __construct($file)
     {
-        $this->filename = $filename;
-
-        if (is_writable($this->filename)) {
-            echo "Не могу открыть файл ($this->filename)";
+        $this->file = $file;
+        if (! is_writable($this->file)) {
+            echo "Файл $this->file недоступен для записи";
+            exit;
         }
+        $this->fp = fopen($this->file, 'a');
+    }
 
     public function __destruct()
     {
-        //print_r($this);
+        fclose($this->fp);
     }
-
-    public function fileWrite($somecontent)
+    public function write($text)
     {
-        if (is_writable($this->filename)) {
-            if (!$fp = fopen($this->filename, 'a')) {
-                echo "Не могу открыть файл ($this->filename)";
-            }
-
-            if (fwrite($fp, $this->somecontent) === FALSE) {
-                echo "Не могу произвести запись в файл ($this->filename)";
-            }
-
-            echo "Ура! Записали ($this->somecontent) в файл ($this->filename)";
-            fclose($fp);
+        if (fwrite($this->fp, $text) === FALSE) {
+            echo "Не могу произвести запись в файл ($this->file)";
+            exit;
         }
-        echo "Файл $this->filename недоступен для записи";
+        echo "Ура! Записали ($this->text) в файл ($this->file)";
     }
-
-
-
-
 }
