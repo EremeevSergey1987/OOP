@@ -2,8 +2,8 @@
 error_reporting(-1);
 require_once 'classes/Car.php';
 
-$objCar = new Car();
-$objCar_mazda = new Car();
+$objCar = new File();
+$objCar_mazda = new File();
 
 print_r($objCar);
 
