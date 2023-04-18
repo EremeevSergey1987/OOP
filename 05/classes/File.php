@@ -15,16 +15,16 @@ class File
         $this->fp = fopen($this->file, 'a');
     }
 
-    public function __destruct()
-    {
-        fclose($this->fp);
-    }
+//    public function __destruct()
+//    {
+//        fclose($this->fp);
+//    }
     public function write($text)
     {
         if (fwrite($this->fp, $text) === FALSE) {
             echo "Не могу произвести запись в файл ($this->file)";
             exit;
         }
-        echo "Ура! Записали ($this->text) в файл ($this->file)";
+        echo "Ура! Записали ($text) в файл ($this->file)";
     }
 }
