@@ -1,24 +1,25 @@
 <?php
-//require_once 'classes/Product.php';
-//require_once 'classes/I3D.php';
-//require_once 'classes/IGadget.php';
-//require_once 'classes/BookProduct.php';
-//require_once 'classes/NoutbookProduct.php';
+
+use classes\BookProduct;
+use classes\NoutbookProduct;
+use vendor\wfm\interfaces\IGadget;
 
 function autoloader($class)
 {
-    $file = __DIR__ . "/classes/{$class}.php";
+    $class = str_replace("\\", '/', $class);
+    $file = __DIR__ . "/{$class}.php";
     if(file_exists($file)){
         require_once $file;
     }
 }
-spl_autoload_register('autoloader');
+spl_autoload_register('autoloader' );
 
 
 
-$book = new BookProduct('Колобок', 100, 888);
+
+
 $notebook = new NoutbookProduct('DELL', 35000, 'intel');
-
+$book = new BookProduct('Колобок', 100, 888);
 //var_dump($notebook instanceof IGadget);
 
 
@@ -30,15 +31,8 @@ function offerCase(IGadget $product){
 }
 
 offerCase($notebook);
-offerCase($book);
+//offerCase($book);
 
-class A{};
-class B extends A{};
-class C{};
-
-$a = new A;
-$b = new B;
-$c = new C;
 
 
 

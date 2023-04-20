@@ -1,8 +1,10 @@
 <?php
+namespace classes;
+use vendor\wfm\interfaces\I3D;
+use vendor\wfm\Product;
 
 class BookProduct extends Product implements I3D
 {
-
     public $numPages;
     const TEST = 20;
     public function __construct($name, $price, $numPages)
@@ -10,6 +12,7 @@ class BookProduct extends Product implements I3D
         parent::__construct($name, $price);
         $this->numPages = $numPages;
         $this->setDiscount(50);
+        var_dump(self::class);
 
     }
 

@@ -1,4 +1,7 @@
 <?php
+namespace classes;
+use vendor\wfm\interfaces\IGadget;
+use vendor\wfm\Product;
 
 class NoutbookProduct extends Product implements IGadget
 {
